@@ -1,0 +1,23 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Recipes</ion-title>
+    <ion-buttons end>
+      <button ion-button clear [navPush]="recipePage" [navParams]="{mode: 'new'}">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+    <button ion-item *ngFor="let recipe of recipeList; let i = index"
+    (click)="onLoadRecipe(recipe, i)">
+      <h2>{{recipe.title}}</h2>
+      <ion-note>{{recipe.description}}</ion-note>
+    </button>
+  </ion-list>
+</ion-content>

@@ -1,0 +1,34 @@
+<div class="modal-box">
+
+
+<ion-header >
+
+  <ion-navbar>
+    <ion-title class="title">Recipe</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding text-center>
+  <h1>{{recipe.title}}</h1>
+  <ion-note>{{recipe.difficulty}}</ion-note>
+  <p>{{recipe.description}}</p>
+
+  <button *ngIf="recipe.ingredients.length > 0" ion-button block outline (click)="onAddIngredients()">Add ingredients to shopping list</button>
+  <button ion-button block outline (click)="onEditRecipe()">Edit recipe</button>
+  <button ion-button block outline color="danger" (click)="onDeleteRecipe()">Delete recipe</button>
+
+  <ion-list *ngIf="recipe.ingredients.length > 0">
+    <h1 text-center>Ingredients:</h1>
+    <ion-item *ngFor="let ingredient of recipe.ingredients">{{ingredient.name}}</ion-item>
+  </ion-list>
+  <ion-row class="btn" >
+    <ion-col col-12> <button ion-button block (click)="onClose()">Close</button></ion-col>
+  </ion-row>
+ 
+ 
+</ion-content>
+
+
+</div>
