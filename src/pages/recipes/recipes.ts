@@ -17,9 +17,7 @@ export class RecipesPage {
                 public navParams: NavParams,
                 public recipeService: RecipeService,
                 public modalController: ModalController) {
-            
-            //console.log('Hola', this.recipeList);
-  }
+              }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad RecipesPage');

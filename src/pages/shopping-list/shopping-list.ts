@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
 import { NgForm } from '../../../node_modules/@angular/forms';
 import { ShoppingListService } from '../../services/shopping-list.service';
 import { Ingredient } from '../../models/ingredient';
@@ -13,7 +13,8 @@ export class ShoppingListPage {
   productList: Ingredient[] =[];
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              public shoppingListService: ShoppingListService) {
+              public shoppingListService: ShoppingListService,
+              public menuController: MenuController) {
   }
 
   ionViewWillEnter() {
@@ -42,6 +43,10 @@ export class ShoppingListPage {
   logDrag(e){
     this.shoppingListService.removeProduct(e);
     this.getProducts();
+  }
+
+  onOpenMenu() {
+    this.menuController.open();
   }
 
 }

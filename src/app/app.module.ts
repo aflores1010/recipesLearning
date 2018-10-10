@@ -12,6 +12,8 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { ShoppingListService } from '../services/shopping-list.service';
 import { RecipeService } from '../services/recipe.service';
 import { RecipeDetailPage } from '../pages/recipe-detail/recipe-detail';
+import { SigninPage } from '../pages/signin/signin';
+import { SignupPage } from '../pages/signup/signup';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { RecipeDetailPage } from '../pages/recipe-detail/recipe-detail';
     RecipesPage,
     RecipePage,
     TabsPage,
-    RecipeDetailPage
+    RecipeDetailPage,
+    SigninPage,
+    SignupPage
 
   ],
   imports: [
@@ -34,7 +38,9 @@ import { RecipeDetailPage } from '../pages/recipe-detail/recipe-detail';
     RecipesPage,
     RecipePage,
     TabsPage,
-    RecipeDetailPage
+    RecipeDetailPage,
+    SigninPage,
+    SignupPage
     
   ],
   providers: [
