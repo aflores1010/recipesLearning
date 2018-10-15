@@ -6,22 +6,22 @@
     </ion-header>
     <ion-content>
         <ion-list>
-            <button ion-item (click)="onLoad(tabsPage)"
+            <button ion-item *ngIf="isAuthenticated" (click)="onLoad(tabsPage)"
              icon-left>
                 <ion-icon name="book" ></ion-icon>
                 Shopping List
             </button>
-            <button ion-item (click)="onLoad(signinPage)"
+            <button ion-item *ngIf="!isAuthenticated" (click)="onLoad(signinPage)"
              icon-left>
                 <ion-icon name="log-in" ></ion-icon>
                 Signin
             </button>
-            <button ion-item (click)="onLoad(signupPage)"
+            <button ion-item *ngIf="!isAuthenticated" (click)="onLoad(signupPage)"
             icon-left>
                 <ion-icon name="person"></ion-icon>
                 Signup
             </button>
-            <button ion-item (click)="onLogout()"
+            <button ion-item *ngIf="isAuthenticated" (click)="onLogout()"
              icon-left>
                 <ion-icon name="log-out" ></ion-icon>
                 Logout
