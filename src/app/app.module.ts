@@ -15,6 +15,9 @@ import { RecipeDetailPage } from '../pages/recipe-detail/recipe-detail';
 import { SigninPage } from '../pages/signin/signin';
 import { SignupPage } from '../pages/signup/signup';
 import { AuthService } from '../services/auth.service';
+import { SlOptions } from '../pages/shopping-list/sl-options/sl-options';
+import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http'  
 
 
 @NgModule({
@@ -26,12 +29,15 @@ import { AuthService } from '../services/auth.service';
     TabsPage,
     RecipeDetailPage,
     SigninPage,
-    SignupPage
+    SignupPage,
+    SlOptions
 
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    HttpModule,
+    HttpClientModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -42,7 +48,8 @@ import { AuthService } from '../services/auth.service';
     TabsPage,
     RecipeDetailPage,
     SigninPage,
-    SignupPage
+    SignupPage,
+    SlOptions
     
   ],
   providers: [
