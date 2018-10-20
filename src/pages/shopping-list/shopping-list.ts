@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, MenuController, PopoverController, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, MenuController, PopoverController, LoadingController, ToastController } from 'ionic-angular';
 import { NgForm } from '../../../node_modules/@angular/forms';
 import { ShoppingListService } from '../../services/shopping-list.service';
 import { Ingredient } from '../../models/ingredient';
@@ -19,7 +19,8 @@ export class ShoppingListPage {
               public menuController: MenuController,
               public popOverController: PopoverController,
               public authService: AuthService,
-              public loadingController: LoadingController) {
+              public loadingController: LoadingController,
+              public toastController: ToastController) {
   }
 
   ionViewWillEnter() {
@@ -54,6 +55,15 @@ export class ShoppingListPage {
     this.menuController.open();
   }
 
+  handleError(err: string) {
+    const toast = this.toastController.create({
+      message: err,
+      duration: 3000,
+      position: 'top'
+    });
+    toast.present();
+  }
+
   onShowOptions(event: MouseEvent) {
     const loading = this.loadingController.create({
       content: ''
@@ -66,8 +76,24 @@ export class ShoppingListPage {
         if(data != null){
         loading.present();
         if (data.action == 'load'){
-          loading.setContent('Loading ingredients...')
-          loading.dismiss();
+          loading.setContent('Loading ingredients...');
+          this.authService.getActiveUser().getIdToken()
+            .then((token:string)=>{
+              loading.dismiss();
+              this.shoppingListService.fetchList(token)
+                .subscribe(
+                  (list: Ingredient[])=>{
+                    if(list){
+                      this.productList = list;
+                    } else {
+                      this.productList = [];
+                    }
+                  console.log('Cargado Correctamente')},
+                error => {
+                  this.handleError(error.message);
+                  console.log(error);
+                });
+            });
       } else {
         loading.setContent('Saving ingredients...')
         this.authService.getActiveUser().getIdToken()
@@ -78,6 +104,7 @@ export class ShoppingListPage {
               .subscribe(
                 (ok) => console.log(ok),
                 error => {
+                  this.handleError(error.message)
                   console.log(error);
                 }
               )

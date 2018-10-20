@@ -2,7 +2,9 @@ import { Ingredient } from '../models/ingredient';
 import { Injectable } from '../../node_modules/@angular/core';
 import { AuthService } from './auth.service';
 import 'rxjs/Rx';
+import { map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs/Rx';
 @Injectable()
 export class ShoppingListService {
     private productList: Ingredient[] = [];
@@ -41,7 +43,16 @@ export class ShoppingListService {
          this.productList);
     }
 
-
-    
+    fetchList(token: string) : Observable<Ingredient[]> {
+        const userId = this.authService.getActiveUser().uid;
+        return this.httpClient.get<Ingredient[]>('https://ionic-2-recipebook-96e0a.firebaseio.com/' + userId + 
+        '/shopping-list.json?auth='+token)
+        .pipe(
+            map(data => {
+                this.productList = data;
+                return data;
+                })
+        );
+    } 
 
 }
