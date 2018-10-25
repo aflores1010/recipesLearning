@@ -18,6 +18,7 @@ import { AuthService } from '../services/auth.service';
 import { SlOptions } from '../pages/shopping-list/sl-options/sl-options';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http'  
+import { RecipesOptions } from '../pages/recipes/recipes-options/recipes-options';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { HttpClientModule } from '@angular/common/http'
     RecipeDetailPage,
     SigninPage,
     SignupPage,
-    SlOptions
+    SlOptions,
+    RecipesOptions
 
   ],
   imports: [
@@ -49,7 +51,8 @@ import { HttpClientModule } from '@angular/common/http'
     RecipeDetailPage,
     SigninPage,
     SignupPage,
-    SlOptions
+    SlOptions,
+    RecipesOptions
     
   ],
   providers: [
