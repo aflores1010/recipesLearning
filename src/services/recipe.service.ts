@@ -53,9 +53,14 @@ export class RecipeService {
         return this.httpClient.get<RecipeModel[]>('https://ionic-2-recipebook-96e0a.firebaseio.com/'
         + this.getUserId() + '/recipe.json?auth='+token)
         .pipe (
-            map (data =>{
-                this.recipeList = data;
-                return data;
+            map (recipes =>{
+                for (let recipe of recipes){
+                    if(!recipe.hasOwnProperty('ingredients')){
+                        recipe.ingredients = [];
+                    }
+                }
+                this.recipeList = recipes;
+                return recipes;
             })
         )
     }
